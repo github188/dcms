@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bocom.dao.TCmSjbmMapper" >
+  <resultMap id="BaseResultMap" type="com.bocom.entity.TCmSjbm" >
+    <id column="F_CM_SJBM_id" property="f_CM_SJBM_id" jdbcType="INTEGER" />
+    <result column="F_CM_SJBM_mc" property="f_CM_SJBM_mc" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_dybm" property="f_CM_SJBM_dybm" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_zxbzgfmc" property="f_CM_SJBM_zxbzgfmc" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_bzgfdh" property="f_CM_SJBM_bzgfdh" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_bzgffbsj" property="f_CM_SJBM_bzgffbsj" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_sfhzddm" property="f_CM_SJBM_sfhzddm" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_bsydyyhgnmk" property="f_CM_SJBM_bsydyyhgnmk" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_lsbm" property="f_CM_SJBM_lsbm" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_jssm" property="f_CM_SJBM_jssm" jdbcType="VARCHAR" />
+    <result column="F_CM_SJBM_fbzt" property="f_CM_SJBM_fbzt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    F_CM_SJBM_id, F_CM_SJBM_mc, F_CM_SJBM_dybm, F_CM_SJBM_zxbzgfmc, F_CM_SJBM_bzgfdh, 
+    F_CM_SJBM_bzgffbsj, F_CM_SJBM_sfhzddm, F_CM_SJBM_bsydyyhgnmk, F_CM_SJBM_lsbm, F_CM_SJBM_jssm, 
+    F_CM_SJBM_fbzt
+  </sql>
+  
+ 
+  <select id="selectByF_CM_SJBM_mc" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CM_SJBM 
+    where F_CM_SJBM_mc  LIKE CONCAT('%',#{f_CM_SJBM_mc},'%' ) 
+  </select>
+  
+  
+  <select id="selectByF_CM_SJBM_fbzt" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CM_SJBM 
+    where F_CM_SJBM_fbzt=0
+  </select>
+   <select id="selectCount" resultMap="BaseResultMap" >
+    select 
+    count(*)
+    from T_CM_SJBM
+    </select>
+    
+     <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select 
+      <include refid="Base_Column_List" />
+    from T_CM_SJBM where F_CM_SJBM_id = #{f_CM_SJBM_id}
+    </select>
+    
+   <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CM_SJBM
+   
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CM_SJBM
+    
+    where F_CM_SJBM_id in <foreach item="idItem" collection="f_CM_SJBM_id" open="(" separator="," close=")">
+
+#{idItem}
+
+
+</foreach> 
+  </delete>
+  <insert id="insert" parameterType="com.bocom.entity.TCmSjbm" >
+    insert into T_CM_SJBM (F_CM_SJBM_id, F_CM_SJBM_mc, F_CM_SJBM_dybm, 
+      F_CM_SJBM_zxbzgfmc, F_CM_SJBM_bzgfdh, F_CM_SJBM_bzgffbsj, 
+      F_CM_SJBM_sfhzddm, F_CM_SJBM_bsydyyhgnmk, 
+      F_CM_SJBM_lsbm, F_CM_SJBM_jssm, F_CM_SJBM_fbzt
+      )
+    values (#{f_CM_SJBM_id,jdbcType=INTEGER}, #{f_CM_SJBM_mc,jdbcType=VARCHAR}, #{f_CM_SJBM_dybm,jdbcType=VARCHAR}, 
+      #{f_CM_SJBM_zxbzgfmc,jdbcType=VARCHAR}, #{f_CM_SJBM_bzgfdh,jdbcType=VARCHAR}, #{f_CM_SJBM_bzgffbsj,jdbcType=VARCHAR}, 
+      #{f_CM_SJBM_sfhzddm,jdbcType=VARCHAR}, #{f_CM_SJBM_bsydyyhgnmk,jdbcType=VARCHAR}, 
+      #{f_CM_SJBM_lsbm,jdbcType=VARCHAR}, #{f_CM_SJBM_jssm,jdbcType=VARCHAR}, #{f_CM_SJBM_fbzt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="f_CM_SJBM_id" parameterType="com.bocom.entity.TCmSjbm" >
+    insert into T_CM_SJBM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="f_CM_SJBM_id != null" >
+        F_CM_SJBM_id,
+      </if>
+      <if test="f_CM_SJBM_mc != null" >
+        F_CM_SJBM_mc,
+      </if>
+      <if test="f_CM_SJBM_dybm != null" >
+        F_CM_SJBM_dybm,
+      </if>
+      <if test="f_CM_SJBM_zxbzgfmc != null" >
+        F_CM_SJBM_zxbzgfmc,
+      </if>
+      <if test="f_CM_SJBM_bzgfdh != null" >
+        F_CM_SJBM_bzgfdh,
+      </if>
+      <if test="f_CM_SJBM_bzgffbsj != null" >
+        F_CM_SJBM_bzgffbsj,
+      </if>
+      <if test="f_CM_SJBM_sfhzddm != null" >
+        F_CM_SJBM_sfhzddm,
+      </if>
+      <if test="f_CM_SJBM_bsydyyhgnmk != null" >
+        F_CM_SJBM_bsydyyhgnmk,
+      </if>
+      <if test="f_CM_SJBM_lsbm != null" >
+        F_CM_SJBM_lsbm,
+      </if>
+      <if test="f_CM_SJBM_jssm != null" >
+        F_CM_SJBM_jssm,
+      </if>
+      <if test="f_CM_SJBM_fbzt != null" >
+        F_CM_SJBM_fbzt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="f_CM_SJBM_id != null" >
+        #{f_CM_SJBM_id,jdbcType=INTEGER},
+      </if>
+      <if test="f_CM_SJBM_mc != null" >
+        #{f_CM_SJBM_mc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_dybm != null" >
+        #{f_CM_SJBM_dybm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_zxbzgfmc != null" >
+        #{f_CM_SJBM_zxbzgfmc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bzgfdh != null" >
+        #{f_CM_SJBM_bzgfdh,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bzgffbsj != null" >
+        #{f_CM_SJBM_bzgffbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_sfhzddm != null" >
+        #{f_CM_SJBM_sfhzddm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bsydyyhgnmk != null" >
+        #{f_CM_SJBM_bsydyyhgnmk,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_lsbm != null" >
+        #{f_CM_SJBM_lsbm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_jssm != null" >
+        #{f_CM_SJBM_jssm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_fbzt != null" >
+        #{f_CM_SJBM_fbzt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bocom.entity.TCmSjbm" >
+    update T_CM_SJBM
+    <set >
+      <if test="f_CM_SJBM_mc != null" >
+        F_CM_SJBM_mc = #{f_CM_SJBM_mc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_dybm != null" >
+        F_CM_SJBM_dybm = #{f_CM_SJBM_dybm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_zxbzgfmc != null" >
+        F_CM_SJBM_zxbzgfmc = #{f_CM_SJBM_zxbzgfmc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bzgfdh != null" >
+        F_CM_SJBM_bzgfdh = #{f_CM_SJBM_bzgfdh,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bzgffbsj != null" >
+        F_CM_SJBM_bzgffbsj = #{f_CM_SJBM_bzgffbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_sfhzddm != null" >
+        F_CM_SJBM_sfhzddm = #{f_CM_SJBM_sfhzddm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_bsydyyhgnmk != null" >
+        F_CM_SJBM_bsydyyhgnmk = #{f_CM_SJBM_bsydyyhgnmk,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_lsbm != null" >
+        F_CM_SJBM_lsbm = #{f_CM_SJBM_lsbm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_SJBM_jssm != null" >
+        F_CM_SJBM_jssm = #{f_CM_SJBM_jssm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_CM_YZLJ != null" >
+        f_CM_SJBM_fbzt = #{f_CM_YZLJ,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_CM_SJBM_id = #{f_CM_SJBM_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bocom.entity.TCmSjbm" >
+    update T_CM_SJBM
+    set F_CM_SJBM_mc = #{f_CM_SJBM_mc,jdbcType=VARCHAR},
+      F_CM_SJBM_dybm = #{f_CM_SJBM_dybm,jdbcType=VARCHAR},
+      F_CM_SJBM_zxbzgfmc = #{f_CM_SJBM_zxbzgfmc,jdbcType=VARCHAR},
+      F_CM_SJBM_bzgfdh = #{f_CM_SJBM_bzgfdh,jdbcType=VARCHAR},
+      F_CM_SJBM_bzgffbsj = #{f_CM_SJBM_bzgffbsj,jdbcType=VARCHAR},
+      F_CM_SJBM_sfhzddm = #{f_CM_SJBM_sfhzddm,jdbcType=VARCHAR},
+      F_CM_SJBM_bsydyyhgnmk = #{f_CM_SJBM_bsydyyhgnmk,jdbcType=VARCHAR},
+      F_CM_SJBM_lsbm = #{f_CM_SJBM_lsbm,jdbcType=VARCHAR},
+      F_CM_SJBM_jssm = #{f_CM_SJBM_jssm,jdbcType=VARCHAR},
+      F_CM_SJBM_fbzt = #{f_CM_YZLJ,jdbcType=VARCHAR}
+    where F_CM_SJBM_id = #{f_CM_SJBM_id,jdbcType=INTEGER}
+  </update>
+</mapper>

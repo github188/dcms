@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bocom.dao.TCXMapper">
+  <resultMap id="BaseResultMap" type="com.bocom.entity.TCX">
+    <id column="F_C_RYJTYSHGX_id" jdbcType="INTEGER" property="f_C_X_id"/>
+    <result column="F_C_RYJTYSHGX_jc" jdbcType="VARCHAR" property="f_C_X_jc"/>
+    <result column="F_C_RYJTYSHGX_bm" jdbcType="VARCHAR" property="f_C_X_bm"/>
+    <result column="F_C_RYJTYSHGX_bzbmz" jdbcType="VARCHAR" property="f_C_X_bzbmz"/>
+    <result column="F_C_RYJTYSHGX_qc" jdbcType="VARCHAR" property="f_C_X_qc"/>
+    <result column="F_C_RYJTYSHGX_sm" jdbcType="VARCHAR" property="f_C_X_sm"/>
+    <result column="F_C_RYJTYSHGX_qtxx" jdbcType="VARCHAR" property="f_C_X_qtxx"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    F_C_${str}_id as f_C_X_id, F_C_${str}_jc as f_C_X_jc, F_C_${str}_bm as f_C_X_bm, F_C_${str}_bzbmz as f_C_X_bzbmz, F_C_${str}_qc as f_C_X_qc, F_C_${str}_sm as f_C_X_sm, 
+    F_C_${str}_qtxx as f_C_X_qtxx
+  </sql>
+  
+<!--   建表 -->
+   <update id="createTable" parameterType="string">
+    create table T_C_${str} 
+        ( F_C_${str}_id INTEGER(11),F_C_${str}_jc varchar(50),F_C_${str}_bm varchar(50),F_C_${str}_bzbmz varchar(50),F_C_${str}_qc varchar(50),
+       F_C_${str}_sm varchar(50),F_C_${str}_qtxx varchar(50),PRIMARY KEY (F_C_${str}_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8
+</update>
+<update id="dropTable">
+		drop table ${tableName}   
+	</update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from T_C_X
+    where F_C_X_id = #{f_C_X_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultType="com.bocom.entity.TCX">
+  select <include refid="Base_Column_List"/> from ${tableName}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from T_C_X
+    where F_C_X_id = #{f_C_X_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bocom.entity.TCX">
+    insert into T_C_X (F_C_X_id, F_C_X_jc, F_C_X_bm, 
+      F_C_X_bzbmz, F_C_X_qc, F_C_X_sm, 
+      F_C_X_qtxx)
+    values (#{f_C_X_id,jdbcType=INTEGER}, #{f_C_X_jc,jdbcType=VARCHAR}, #{f_C_X_bm,jdbcType=VARCHAR}, 
+      #{f_C_X_bzbmz,jdbcType=VARCHAR}, #{f_C_X_qc,jdbcType=VARCHAR}, #{f_C_X_sm,jdbcType=VARCHAR}, 
+      #{f_C_X_qtxx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bocom.entity.TCX">
+    insert into T_C_X
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="f_C_X_id != null">
+        F_C_X_id,
+      </if>
+      <if test="f_C_X_jc != null">
+        F_C_X_jc,
+      </if>
+      <if test="f_C_X_bm != null">
+        F_C_X_bm,
+      </if>
+      <if test="f_C_X_bzbmz != null">
+        F_C_X_bzbmz,
+      </if>
+      <if test="f_C_X_qc != null">
+        F_C_X_qc,
+      </if>
+      <if test="f_C_X_sm != null">
+        F_C_X_sm,
+      </if>
+      <if test="f_C_X_qtxx != null">
+        F_C_X_qtxx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="f_C_X_id != null">
+        #{f_C_X_id,jdbcType=INTEGER},
+      </if>
+      <if test="f_C_X_jc != null">
+        #{f_C_X_jc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_bm != null">
+        #{f_C_X_bm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_bzbmz != null">
+        #{f_C_X_bzbmz,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_qc != null">
+        #{f_C_X_qc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_sm != null">
+        #{f_C_X_sm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_qtxx != null">
+        #{f_C_X_qtxx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bocom.entity.TCX">
+    update T_C_X
+    <set>
+      <if test="f_C_X_jc != null">
+        F_C_X_jc = #{f_C_X_jc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_bm != null">
+        F_C_X_bm = #{f_C_X_bm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_bzbmz != null">
+        F_C_X_bzbmz = #{f_C_X_bzbmz,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_qc != null">
+        F_C_X_qc = #{f_C_X_qc,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_sm != null">
+        F_C_X_sm = #{f_C_X_sm,jdbcType=VARCHAR},
+      </if>
+      <if test="f_C_X_qtxx != null">
+        F_C_X_qtxx = #{f_C_X_qtxx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_C_X_id = #{f_C_X_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bocom.entity.TCX">
+    update T_C_X
+    set F_C_X_jc = #{f_C_X_jc,jdbcType=VARCHAR},
+      F_C_X_bm = #{f_C_X_bm,jdbcType=VARCHAR},
+      F_C_X_bzbmz = #{f_C_X_bzbmz,jdbcType=VARCHAR},
+      F_C_X_qc = #{f_C_X_qc,jdbcType=VARCHAR},
+      F_C_X_sm = #{f_C_X_sm,jdbcType=VARCHAR},
+      F_C_X_qtxx = #{f_C_X_qtxx,jdbcType=VARCHAR}
+    where F_C_X_id = #{f_C_X_id,jdbcType=INTEGER}
+  </update>
+</mapper>
